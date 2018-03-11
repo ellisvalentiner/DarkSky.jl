@@ -4,6 +4,8 @@ A Julia wrapper for the Dark Sky weather data API.
 
 [![Build Status](https://travis-ci.org/ellisvalentiner/DarkSky.jl.svg?branch=master)](https://travis-ci.org/ellisvalentiner/DarkSky.jl)
 
+[![codecov](https://codecov.io/gh/ellisvalentiner/DarkSky.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/ellisvalentiner/DarkSky.jl)
+
 ## Overview
 
 This package is a wrapper for the Dark Sky API.
