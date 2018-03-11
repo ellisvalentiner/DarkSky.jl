@@ -23,7 +23,7 @@ DarkSky.jl expects your API key to be stored as an environment variable named `D
 ```julia
 using DarkSky
 # Make a "Forecast Request", returns the current weather forecast for the next week.
-forecast(latitude=42.3601, longitude=-71.0589)
+forecast(42.3601, -71.0589)
 # Make a "Time Machine Request", returns the observed or forecast weather conditions for a date in the past or future.
-forecast(latitude=42.3601, longitude=-71.0589, time=DateTime(2018, 3, 7, 14, 19, 57))
+forecast(42.3601, -71.0589, DateTime(2018, 3, 7, 14, 19, 57))
 ```
