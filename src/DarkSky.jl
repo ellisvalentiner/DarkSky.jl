@@ -2,13 +2,15 @@ VERSION >= v"0.6.0" && __precompile__()
 
 module DarkSky
 
-using Requests
+using HTTP
+using JSON
 using Base.Dates
 
 function _get_json(url::String)
-    response = Requests.get(url)
-    if Requests.statuscode(response) == 200
-        return Requests.json(response)
+    response = HTTP.get(url)
+    info(response)
+    if response.status == 200
+        return JSON.Parser.parse(String(response.body))
     end
 end
 
