@@ -6,18 +6,18 @@ using HTTP
 using JSON
 using Base.Dates
 
-OptionalDict = Union{Dict, Void}
+Optional{T} = Union{T, Void}
 
 struct DarkSkyResponse
     latitude::Float64
     longitude::Float64
     timezone::String
-    currently::OptionalDict
-    minutely::OptionalDict
-    hourly::OptionalDict
-    daily::OptionalDict
-    alerts::OptionalDict
-    flags::OptionalDict
+    currently::Optional{Dict}
+    minutely::Optional{Dict}
+    hourly::Optional{Dict}
+    daily::Optional{Dict}
+    alerts::Optional{Dict}
+    flags::Optional{Dict}
 end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
 
