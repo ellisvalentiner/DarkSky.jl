@@ -4,7 +4,7 @@ A Julia wrapper for the Dark Sky weather data API.
 
 [![Build Status](https://travis-ci.org/ellisvalentiner/DarkSky.jl.svg?branch=master)](https://travis-ci.org/ellisvalentiner/DarkSky.jl)
 
-[![codecov](https://codecov.io/gh/ellisvalentiner/DarkSky.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/ellisvalentiner/DarkSky.jl)
+[![coveralls](https://coveralls.io/repos/ellisvalentiner/DarkSky.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/ellisvalentiner/DarkSky.jl?branch=master) [![codecov](https://codecov.io/gh/ellisvalentiner/DarkSky.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/ellisvalentiner/DarkSky.jl)
 
 ## Overview
 
@@ -28,6 +28,19 @@ DarkSky.jl expects your API key to be stored as an environment variable named `D
 using DarkSky
 # Make a "Forecast Request", returns the current weather forecast for the next week.
 forecast(42.3601, -71.0589)
-# Make a "Time Machine Request", returns the observed or forecast weather conditions for a date in the past or future.
+# Make a "Time Machine Request", returns the observed or forecast weather conditions for a date in
+# the past or future.
 forecast(42.3601, -71.0589, DateTime(2018, 3, 7, 14, 19, 57))
 ```
+
+## Contributing
+
+See the [CONTRIBUTING](https://github.com/ellisvalentiner/DarkSky.jl/blob/master/CONTRIBUTING) file.
+
+## Conduct
+
+We adhere to the [Julia community standards](http://julialang.org/community/standards/).
+
+## License
+
+The code is available under the [MIT License](https://github.com/ellisvalentiner/DarkSky.jl/blob/master/LICENSE).
