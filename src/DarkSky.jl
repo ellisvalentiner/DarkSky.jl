@@ -29,6 +29,11 @@ function _get_json(url::String, verbose::Bool)
     end
 end
 
+"""
+    forecast(latitude::Float64, longitude::Float64; verbose::Bool=true)
+
+Make a "Forecast Request", returns the current weather forecast for the next week.
+"""
 forecast(latitude::Float64, longitude::Float64; verbose::Bool=true) = _get_json("https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude", verbose)
 forecast(latitude::Float64, longitude::Float64, time::DateTime; verbose::Bool=true) = _get_json("https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude,$time", verbose)
 export forecast
