@@ -54,12 +54,12 @@ function forecast(latitude::Float64, longitude::Float64; verbose::Bool=true,
                   lang::String="en", units::String="us")
     @argcheck in(lang, SUPPORTED_LANGS)
     @argcheck in(units, SUPPORTED_UNITS)
-    url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude?lang=$lang,units=$units"
+    url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude?lang=$lang&units=$units"
     if !(exclude === nothing)
-        url = "$url,exclude=$(join(exclude, ","))"
+        url = "$url&exclude=$(join(exclude, ","))"
     end
     if !(extend === nothing)
-        url = "$url,extend=$extend"
+        url = "$url&extend=$extend"
     end
     _get_json(url, verbose)
 end
@@ -80,12 +80,12 @@ the past or future.
 - `units`: return weather conditions in the requested units (optional).
 """
 function forecast(latitude::Float64, longitude::Float64, time::DateTime; verbose::Bool=true,
-                  extend::Optional{String}=nothing, lang::String="en", units::String="us")
+                  exclude::Optional{Array{String}}=nothing, lang::String="en", units::String="us")
     @argcheck in(lang, SUPPORTED_LANGS)
     @argcheck in(units, SUPPORTED_UNITS)
-    url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude?lang=$lang,units=$units"
-    if !(extend === nothing)
-      url = "$url,extend=$extend"
+    url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude?lang=$lang&units=$units"
+    if !(exclude === nothing)
+        url = "$url&exclude=$(join(exclude, ","))"
     end
     _get_json(url, verbose)
 end
