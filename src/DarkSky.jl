@@ -22,7 +22,7 @@ struct DarkSkyResponse
     minutely::Optional{Dict}
     hourly::Optional{Dict}
     daily::Optional{Dict}
-    alerts::Optional{Dict}
+    alerts::Optional{Array}
     flags::Optional{Dict}
 end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
