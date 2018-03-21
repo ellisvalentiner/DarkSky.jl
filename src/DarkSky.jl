@@ -31,6 +31,14 @@ function Base.show(io::IO, x::DarkSkyResponse)
     print(io, (x.latitude, x.longitude), "\n" * x.daily["summary"])
 end
 
+for fieldname in fieldnames(DarkSkyResponse)
+    fname = Symbol(fieldname)
+    @eval begin
+        ($fieldname)(x::DarkSkyResponse) = x.$fname
+        export $fieldname
+    end
+end
+
 function _get_json(url::String, verbose::Bool)
     response = HTTP.get(url)
     verbose ? info(response) : nothing
