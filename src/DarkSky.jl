@@ -27,6 +27,10 @@ struct DarkSkyResponse
 end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
 
+function Base.show(io::IO, x::DarkSkyResponse)
+    print(io, (x.latitude, x.longitude), "\n" * x.daily["summary"])
+end
+
 function _get_json(url::String, verbose::Bool)
     response = HTTP.get(url)
     verbose ? info(response) : nothing
