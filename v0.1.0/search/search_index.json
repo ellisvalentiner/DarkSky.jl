@@ -1,0 +1,44 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "DarkSky.jl\n\n\nA Julia wrapper for the Dark Sky weather data API.\n\n\n\n\n \n\n\n \n\n\n\n\nOverview\n\n\nThis package is a wrapper for the Dark Sky API.\n\n\nThe Dark Sky API requires an API key. See the \nDark Sky Developer Documentation\n to request one.\n\n\n\n\nInstallation\n\n\n# DarkSky.jl is not currently registered as an official package\n# Please install the development version from GitHub:\nPkg.clone(\ngit://github.com:ellisvalentiner/DarkSky.jl.git\n)\n\n\n\n\nDarkSky.jl expects your API key to be stored as an environment variable named \nDARKSKY_API_KEY\n.\n\n\n\n\nUsage\n\n\nusing DarkSky\n# Make a \nForecast Request\n, returns the current weather forecast for the next week.\nforecast(42.3601, -71.0589)\n# Make a \nTime Machine Request\n, returns the observed or forecast weather conditions for a date in\n# the past or future.\nforecast(42.3601, -71.0589, DateTime(2018, 3, 7, 14, 19, 57))\n\n\n\n\n\n\nContributing\n\n\nSee the \nCONTRIBUTING\n file.\n\n\n\n\nConduct\n\n\nWe adhere to the \nJulia community standards\n.\n\n\n\n\nLicense\n\n\nThe code is available under the \nMIT License\n.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#darkskyjl", 
+            "text": "A Julia wrapper for the Dark Sky weather data API.", 
+            "title": "DarkSky.jl"
+        }, 
+        {
+            "location": "/#overview", 
+            "text": "This package is a wrapper for the Dark Sky API.  The Dark Sky API requires an API key. See the  Dark Sky Developer Documentation  to request one.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "# DarkSky.jl is not currently registered as an official package\n# Please install the development version from GitHub:\nPkg.clone( git://github.com:ellisvalentiner/DarkSky.jl.git )  DarkSky.jl expects your API key to be stored as an environment variable named  DARKSKY_API_KEY .", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "using DarkSky\n# Make a  Forecast Request , returns the current weather forecast for the next week.\nforecast(42.3601, -71.0589)\n# Make a  Time Machine Request , returns the observed or forecast weather conditions for a date in\n# the past or future.\nforecast(42.3601, -71.0589, DateTime(2018, 3, 7, 14, 19, 57))", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/#contributing", 
+            "text": "See the  CONTRIBUTING  file.", 
+            "title": "Contributing"
+        }, 
+        {
+            "location": "/#conduct", 
+            "text": "We adhere to the  Julia community standards .", 
+            "title": "Conduct"
+        }, 
+        {
+            "location": "/#license", 
+            "text": "The code is available under the  MIT License .", 
+            "title": "License"
+        }
+    ]
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Julia wrapper for the Dark Sky API.">
+  <meta name="author" content="Ellis Valentiner">
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - DarkSky.jl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  <link href="./assets/Documenter.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> DarkSky.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#darkskyjl">DarkSky.jl</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#overview">Overview</a></li>
+        
+            <li><a class="toctree-l3" href="#installation">Installation</a></li>
+        
+            <li><a class="toctree-l3" href="#usage">Usage</a></li>
+        
+            <li><a class="toctree-l3" href="#contributing">Contributing</a></li>
+        
+            <li><a class="toctree-l3" href="#conduct">Conduct</a></li>
+        
+            <li><a class="toctree-l3" href="#license">License</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">DarkSky.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ellisvalentiner/DarkSky.jl/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='DarkSky.jl-1'></a></p>
+<h1 id="darkskyjl">DarkSky.jl</h1>
+<p>A Julia wrapper for the Dark Sky weather data API.</p>
+<p><a href="https://travis-ci.org/ellisvalentiner/DarkSky.jl"><img alt="Build Status" src="https://travis-ci.org/ellisvalentiner/DarkSky.jl.svg?branch=master" /></a></p>
+<p><a href="https://coveralls.io/github/ellisvalentiner/DarkSky.jl?branch=master"><img alt="coveralls" src="https://coveralls.io/repos/ellisvalentiner/DarkSky.jl/badge.svg?branch=master&amp;service=github" /></a> <a href="https://codecov.io/gh/ellisvalentiner/DarkSky.jl"><img alt="codecov" src="https://codecov.io/gh/ellisvalentiner/DarkSky.jl/branch/master/graph/badge.svg" /></a></p>
+<p><a href="https://ellisvalentiner.github.io/DarkSky.jl/stable"><img alt="" src="https://img.shields.io/badge/docs-stable-blue.svg" /></a> <a href="https://ellisvalentiner.github.io/DarkSky.jl/latest"><img alt="" src="https://img.shields.io/badge/docs-latest-blue.svg" /></a></p>
+<p><a id='Overview-1'></a></p>
+<h2 id="overview">Overview</h2>
+<p>This package is a wrapper for the Dark Sky API.</p>
+<p>The Dark Sky API requires an API key. See the <a href="https://darksky.net/dev/docs">Dark Sky Developer Documentation</a> to request one.</p>
+<p><a id='Installation-1'></a></p>
+<h2 id="installation">Installation</h2>
+<pre><code class="julia"># DarkSky.jl is not currently registered as an official package
+# Please install the development version from GitHub:
+Pkg.clone(&quot;git://github.com:ellisvalentiner/DarkSky.jl.git&quot;)
+</code></pre>
+
+<p>DarkSky.jl expects your API key to be stored as an environment variable named <code>DARKSKY_API_KEY</code>.</p>
+<p><a id='Usage-1'></a></p>
+<h2 id="usage">Usage</h2>
+<pre><code class="julia">using DarkSky
+# Make a &quot;Forecast Request&quot;, returns the current weather forecast for the next week.
+forecast(42.3601, -71.0589)
+# Make a &quot;Time Machine Request&quot;, returns the observed or forecast weather conditions for a date in
+# the past or future.
+forecast(42.3601, -71.0589, DateTime(2018, 3, 7, 14, 19, 57))
+</code></pre>
+
+<p><a id='Contributing-1'></a></p>
+<h2 id="contributing">Contributing</h2>
+<p>See the <a href="https://github.com/ellisvalentiner/DarkSky.jl/blob/master/CONTRIBUTING">CONTRIBUTING</a> file.</p>
+<p><a id='Conduct-1'></a></p>
+<h2 id="conduct">Conduct</h2>
+<p>We adhere to the <a href="http://julialang.org/community/standards/">Julia community standards</a>.</p>
+<p><a id='License-1'></a></p>
+<h2 id="license">License</h2>
+<p>The code is available under the <a href="https://github.com/ellisvalentiner/DarkSky.jl/blob/master/LICENSE">MIT License</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ellisvalentiner/DarkSky.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js"></script>
+      <script src="./search/require.js"></script>
+      <script src="./search/search.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.17.3
+Build Date UTC : 2018-03-22 21:29:52
+-->
