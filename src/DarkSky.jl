@@ -28,7 +28,7 @@ end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
 
 function Base.show(io::IO, x::DarkSkyResponse)
-    print(io, (x.latitude, x.longitude), "\n" * x.daily["summary"])
+    print(io, (x.latitude, x.longitude))
 end
 
 for fieldname in fieldnames(DarkSkyResponse)
@@ -95,7 +95,7 @@ function forecast(latitude::Float64, longitude::Float64, time::DateTime; verbose
                   exclude::Optional{Array{String}}=nothing, lang::String="en", units::String="us")
     @argcheck in(lang, SUPPORTED_LANGS)
     @argcheck in(units, SUPPORTED_UNITS)
-    url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude?lang=$lang&units=$units"
+    url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude,$time?lang=$lang&units=$units"
     if !(exclude === nothing)
         url = "$url&exclude=$(join(exclude, ","))"
     end
