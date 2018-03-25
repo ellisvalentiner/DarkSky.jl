@@ -15,6 +15,7 @@ if haskey(ENV, "DARKSKY_API_KEY")
     @test isa(daily(response), Dict{String, Any})
     @test isa(alerts(response), Array{Any, 1}) | isa(alerts(response), Void)
     @test isa(flags(response), Dict{String, Any})
+    @test isa(print(response), Void)
     @test isa(forecast(42.3601, -71.0589, DateTime(2018, 1, 1, 0, 0, 0), lang="es", units="si", exclude=["minutely"]), DarkSky.DarkSkyResponse)
 else
     warn("Dark Sky API key was not found in your system environment variables, skipping tests...")
