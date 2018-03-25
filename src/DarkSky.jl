@@ -28,7 +28,7 @@ end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
 
 function Base.show(io::IO, x::DarkSkyResponse)
-    print(io, (x.latitude, x.longitude), "\n" * x.daily["summary"])
+    print(io, (x.latitude, x.longitude))
 end
 
 for fieldname in fieldnames(DarkSkyResponse)
