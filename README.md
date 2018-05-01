@@ -17,8 +17,9 @@ The Dark Sky API requires an API key. See the [Dark Sky Developer Documentation]
 ## Installation
 
 ```julia
-# DarkSky.jl is not currently registered as an official package
-# Please install the development version from GitHub:
+# Install the latest stable version:
+Pkg.install("DarkSky")
+ Or the the development version from GitHub:
 Pkg.clone("git://github.com/ellisvalentiner/DarkSky.jl.git")
 ```
 
