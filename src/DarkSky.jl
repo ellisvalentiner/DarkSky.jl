@@ -18,6 +18,7 @@ struct DarkSkyResponse
     latitude::Float64
     longitude::Float64
     timezone::String
+    offset::Optional{Int}
     currently::Optional{Dict}
     minutely::Optional{Dict}
     hourly::Optional{Dict}
@@ -26,6 +27,8 @@ struct DarkSkyResponse
     flags::Optional{Dict}
 end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
+Dict(x::DarkSkyResponse) = Dict(String(f) => getfield(x, f) for f in fieldnames(x) if getfield(x, f) != nothing)
+Base.convert(Dict, x::DarkSkyResponse) = Dict(x)
 
 function Base.show(io::IO, x::DarkSkyResponse)
     print(io, (x.latitude, x.longitude))
@@ -39,11 +42,16 @@ for fieldname in fieldnames(DarkSkyResponse)
     end
 end
 
-function _get_json(url::String, verbose::Bool)
+function _get_json(url::String, out_type::String, verbose::Bool)
     response = HTTP.get(url)
     verbose ? info(response) : nothing
     if response.status == 200
-        return DarkSkyResponse(JSON.Parser.parse(String(response.body)))
+        out = JSON.Parser.parse(String(response.body))
+        if out_type == "DarkSkyResponse"
+            return DarkSkyResponse(out)
+        else
+            return out
+        end
     end
 end
 
@@ -63,7 +71,7 @@ Make a "Forecast Request", returns the current weather forecast for the next wee
 """
 function forecast(latitude::Float64, longitude::Float64; verbose::Bool=true,
                   exclude::Optional{Array{String}}=nothing, extend::Optional{String}=nothing,
-                  lang::String="en", units::String="us")
+                  lang::String="en", units::String="us", out_type::String="DarkSkyResponse")
     @argcheck in(lang, SUPPORTED_LANGS)
     @argcheck in(units, SUPPORTED_UNITS)
     url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude?lang=$lang&units=$units"
@@ -73,7 +81,7 @@ function forecast(latitude::Float64, longitude::Float64; verbose::Bool=true,
     if !(extend === nothing)
         url = "$url&extend=$extend"
     end
-    _get_json(url, verbose)
+    _get_json(url, out_type, verbose)
 end
 
 """
@@ -92,16 +100,17 @@ the past or future.
 - `units`: return weather conditions in the requested units (optional).
 """
 function forecast(latitude::Float64, longitude::Float64, time::DateTime; verbose::Bool=true,
-                  exclude::Optional{Array{String}}=nothing, lang::String="en", units::String="us")
+                  exclude::Optional{Array{String}}=nothing, lang::String="en", units::String="us",
+                  out_type::String="DarkSkyResponse")
     @argcheck in(lang, SUPPORTED_LANGS)
     @argcheck in(units, SUPPORTED_UNITS)
     url = "https://api.darksky.net/forecast/$(ENV["DARKSKY_API_KEY"])/$latitude,$longitude,$time?lang=$lang&units=$units"
     if !(exclude === nothing)
         url = "$url&exclude=$(join(exclude, ","))"
     end
-    _get_json(url, verbose)
+    _get_json(url, out_type, verbose)
 end
 
-export forecast
+export forecast, DarkSkyResponse
 
 end # module
