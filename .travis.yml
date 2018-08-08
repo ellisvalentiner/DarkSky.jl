@@ -14,7 +14,7 @@ notifications:
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
   - julia --track-allocation=user -e 'using Pkg; Pkg.add("Test"); Pkg.add("DarkSky"); Pkg.test("DarkSky"; coverage=true)'
-  - julia -e 'using Pkg; import DarkSky; joinpath(dirname(pathof(DarkSky)), "..", paths...); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder()); Coveralls.submit(process_folder());'
+  - julia -e 'using Pkg; import DarkSky; cd(joinpath(dirname(pathof(DarkSky)), "..")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder()); Coveralls.submit(process_folder());'
 after_success:
   - julia -e 'using Pkg; Pkg.add("Documenter")'
   - julia -e 'cd(Pkg.dir("DarkSky")); include(joinpath("docs", "make.jl"))'
