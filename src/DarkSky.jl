@@ -1,13 +1,13 @@
-VERSION >= v"0.6.0" && __precompile__()
+VERSION >= v"0.7.0" && __precompile__()
 
 module DarkSky
 
 using ArgCheck
 using HTTP
 using JSON
-using Base.Dates
+using Dates
 
-Optional{T} = Union{T, Void}
+Optional{T} = Union{T, Nothing}
 const SUPPORTED_LANGS = ["ar", "az", "be", "bg", "bs", "ca", "cs", "da", "de", "el", "en", "es",
                          "et", "fi", "fr", "hr", "hu", "id", "is", "it", "ja", "ka", "kw", "nb",
                          "nl", "pl", "pt", "ro", "ru", "sk", "sl", "sr", "sv", "tet", "tr", "uk",
@@ -27,7 +27,7 @@ struct DarkSkyResponse
     flags::Optional{Dict}
 end
 DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
-Dict(x::DarkSkyResponse) = Dict(String(f) => getfield(x, f) for f in fieldnames(x) if getfield(x, f) != nothing)
+Dict(x::DarkSkyResponse) = Dict(String(f) => getfield(x, f) for f in fieldnames(typeof(x)) if getfield(x, f) != nothing)
 Base.convert(Dict, x::DarkSkyResponse) = Dict(x)
 
 function Base.show(io::IO, x::DarkSkyResponse)
@@ -44,7 +44,7 @@ end
 
 function _get_json(url::String, out_type::String, verbose::Bool)
     response = HTTP.get(url)
-    verbose ? info(response) : nothing
+    verbose ? @info(response) : nothing
     if response.status == 200
         out = JSON.Parser.parse(String(response.body))
         if out_type == "DarkSkyResponse"
@@ -69,7 +69,7 @@ Make a "Forecast Request", returns the current weather forecast for the next wee
 - `lang`: return summary properties in the desired language (optional).
 - `units`: return weather conditions in the requested units (optional).
 """
-function forecast(latitude::Float64, longitude::Float64; verbose::Bool=true,
+function forecast(latitude::Float64, longitude::Float64; verbose::Bool=false,
                   exclude::Optional{Array{String}}=nothing, extend::Optional{String}=nothing,
                   lang::String="en", units::String="us", out_type::String="DarkSkyResponse")
     @argcheck in(lang, SUPPORTED_LANGS)
@@ -99,7 +99,7 @@ the past or future.
 - `lang`: return summary properties in the desired language (optional).
 - `units`: return weather conditions in the requested units (optional).
 """
-function forecast(latitude::Float64, longitude::Float64, time::DateTime; verbose::Bool=true,
+function forecast(latitude::Float64, longitude::Float64, time::DateTime; verbose::Bool=false,
                   exclude::Optional{Array{String}}=nothing, lang::String="en", units::String="us",
                   out_type::String="DarkSkyResponse")
     @argcheck in(lang, SUPPORTED_LANGS)
