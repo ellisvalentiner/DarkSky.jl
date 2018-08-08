@@ -13,7 +13,7 @@ notifications:
   email: false
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia --track-allocation=user -e 'using Pkg; Pkg.add("Test"); Pkg.build("DarkSky"); Pkg.test("DarkSky"; coverage=true)'
+  - julia --track-allocation=user -e 'using Pkg; Pkg.add("Test"); Pkg.add("DarkSky"); Pkg.test("DarkSky"; coverage=true)'
   - julia -e 'using Pkg; cd(Pkg.dir("DarkSky")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder()); Coveralls.submit(process_folder());'
 after_success:
   - julia -e 'using Pkg; Pkg.add("Documenter")'
