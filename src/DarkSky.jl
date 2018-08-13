@@ -1,4 +1,4 @@
-VERSION >= v"0.7.0" && __precompile__()
+VERSION >= v"1.0.0" && __precompile__()
 
 module DarkSky
 
@@ -26,7 +26,21 @@ struct DarkSkyResponse
     alerts::Optional{Array}
     flags::Optional{Dict}
 end
-DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
+# DarkSkyResponse(x::Dict) = DarkSkyResponse((get.(x, String.(fieldnames(DarkSkyResponse)), nothing))...)
+function DarkSkyResponse(x::Dict)
+    DarkSkyResponse(
+        get(x, "latitude", nothing),
+        get(x, "longitude", nothing),
+        get(x, "timezone", nothing),
+        get(x, "offset", nothing),
+        get(x, "currently", nothing),
+        get(x, "minutely", nothing),
+        get(x, "hourly", nothing),
+        get(x, "daily", nothing),
+        get(x, "alerts", nothing),
+        get(x, "flags", nothing)
+    )
+end
 Dict(x::DarkSkyResponse) = Dict(String(f) => getfield(x, f) for f in fieldnames(typeof(x)) if getfield(x, f) != nothing)
 Base.convert(Dict, x::DarkSkyResponse) = Dict(x)
 
@@ -44,7 +58,7 @@ end
 
 function _get_json(url::String, out_type::String, verbose::Bool)
     response = HTTP.get(url)
-    verbose ? @info(response) : nothing
+    verbose ? info(response) : nothing
     if response.status == 200
         out = JSON.Parser.parse(String(response.body))
         if out_type == "DarkSkyResponse"
