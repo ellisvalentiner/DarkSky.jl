@@ -1,7 +1,7 @@
 name = "DarkSky"
 uuid = "f47aef8c-9b43-11e8-049e-c55d9d9fa167"
 authors = ["Ellis Valentiner <ellisvalentiner@gmail.com>"]
-version = "1.1.0"
+version = "1.2.0"
 
 [deps]
 ArgCheck = "dce04be8-c92d-5529-be00-80e4d2c0e197"
