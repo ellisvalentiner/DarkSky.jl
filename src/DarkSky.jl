@@ -1,4 +1,4 @@
-VERSION >= v"1.0.0" && __precompile__()
+VERSION >= v"1.2.0" && __precompile__()
 
 module DarkSky
 
