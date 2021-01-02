@@ -1,5 +1,8 @@
 # DarkSky.jl
 
+| Deprecated: Dark Sky was purchased by Apple and no longer allows new signups for the API. Use a different weather API service. |
+|:---:|
+
 A Julia wrapper for the Dark Sky weather data API.
 
 [![Build Status](https://travis-ci.org/ellisvalentiner/DarkSky.jl.svg?branch=master)](https://travis-ci.org/ellisvalentiner/DarkSky.jl)
